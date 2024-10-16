@@ -1,5 +1,6 @@
 // Test ID: IIDSAT
 
+import { getOrder } from "../services/apiRestaurant";
 import { calcMinutesLeft, formatCurrency, formatDate } from "../utils/helpers";
 
 const order = {
@@ -78,5 +79,7 @@ function Order() {
     </div>
   );
 }
-
+export const loader = async ({ params }) => {
+  return await getOrder(params.orderId);
+};
 export default Order;
