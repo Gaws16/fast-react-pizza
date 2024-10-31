@@ -1,28 +1,15 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import SearchOrder from "../order/SearchOrder";
+import Username from "../user/Username";
 
 function Header() {
-  const [query, setQuery] = useState("");
-  const navigate = useNavigate();
-  function handleSearch(e) {
-    e.preventDefault();
-    if (!query) return;
-    navigate(`/order/${query}`);
-    setQuery("");
-  }
   return (
-    <header>
-      <Link to="/">Fast React Pizza co</Link>
-      <form onSubmit={handleSearch}>
-        <input
-          type="search"
-          placeholder="Search order #"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        />
-        <button>🔍</button>
-      </form>
-      <h1>Mihael</h1>
+    <header className="flex items-center justify-between border-b border-stone-200 bg-yellow-500 px-4 py-3 uppercase sm:px-6">
+      <Link to="/" className="tracking-widest">
+        Fast React Pizza co
+      </Link>
+      <SearchOrder />
+      <Username />
     </header>
   );
 }
