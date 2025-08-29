@@ -19,7 +19,7 @@ function MenuItem({ pizza }) {
           ) : (
             <p className="text-sm uppercase text-stone-500">Sold out</p>
           )}
-          <Button type="small">Add to cart</Button>
+          {!soldOut && <Button type="small">Add to cart</Button>}
         </div>
       </div>
     </li>

@@ -1,0 +1,82 @@
+{
+  "menu": [
+    {
+      "id": 1,
+      "name": "Margherita",
+      "unitPrice": 8,
+      "ingredients": ["tomato", "mozzarella", "basil"],
+      "soldOut": false,
+      "imageUrl": "https://picsum.photos/400/300?random=1"
+    },
+    {
+      "id": 2,
+      "name": "Pepperoni",
+      "unitPrice": 10,
+      "ingredients": ["tomato", "mozzarella", "pepperoni"],
+      "soldOut": false,
+      "imageUrl": "https://picsum.photos/400/300?random=2"
+    },
+    {
+      "id": 3,
+      "name": "Hawaiian",
+      "unitPrice": 11,
+      "ingredients": ["tomato", "mozzarella", "ham", "pineapple"],
+      "soldOut": false,
+      "imageUrl": "https://picsum.photos/400/300?random=3"
+    },
+    {
+      "id": 4,
+      "name": "BBQ Chicken",
+      "unitPrice": 12,
+      "ingredients": ["bbq sauce", "mozzarella", "chicken", "onion"],
+      "soldOut": false,
+      "imageUrl": "https://picsum.photos/400/300?random=4"
+    },
+    {
+      "id": 5,
+      "name": "Four Cheese",
+      "unitPrice": 13,
+      "ingredients": ["mozzarella", "cheddar", "parmesan", "gorgonzola"],
+      "soldOut": false,
+      "imageUrl": "https://picsum.photos/400/300?random=5"
+    },
+    {
+      "id": 6,
+      "name": "Veggie",
+      "unitPrice": 9,
+      "ingredients": [
+        "tomato",
+        "mozzarella",
+        "bell peppers",
+        "onion",
+        "mushroom",
+        "olives"
+      ],
+      "soldOut": false,
+      "imageUrl": "https://picsum.photos/400/300?random=6"
+    },
+    {
+      "id": 7,
+      "name": "Meat Lovers",
+      "unitPrice": 14,
+      "ingredients": [
+        "tomato",
+        "mozzarella",
+        "pepperoni",
+        "sausage",
+        "bacon",
+        "ham"
+      ],
+      "soldOut": false,
+      "imageUrl": "https://picsum.photos/400/300?random=7"
+    },
+    {
+      "id": 8,
+      "name": "Truffle Mushroom",
+      "unitPrice": 15,
+      "ingredients": ["cream sauce", "mozzarella", "mushroom", "truffle oil"],
+      "soldOut": true,
+      "imageUrl": "https://picsum.photos/400/300?random=8"
+    }
+  ]
+}
