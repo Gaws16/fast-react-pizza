@@ -19,7 +19,7 @@ function SearchOrder() {
         onChange={(e) => setQuery(e.target.value)}
         className="rounded-full bg-yellow-100 px-4 py-2 text-sm transition-all duration-300 placeholder:text-stone-400 focus:outline-none focus:ring focus:ring-yellow-100 focus:ring-opacity-50 focus:ring-offset-2 sm:w-64 sm:focus:w-72"
       />
-      <button>🔍</button>
+      <button className="ml-4 text-2xl">🔍</button>
     </form>
   );
 }
