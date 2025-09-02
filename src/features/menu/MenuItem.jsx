@@ -24,7 +24,7 @@ function MenuItem({ pizza }) {
     }
 
     const newItem = {
-      id: id,
+      pizzaId: id,
       name: name,
       unitPrice: unitPrice,
       quantity: 1,
