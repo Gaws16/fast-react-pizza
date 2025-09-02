@@ -1,11 +1,12 @@
 import { Form, redirect, useActionData, useNavigation } from "react-router-dom";
 import { createOrder } from "../services/apiRestaurant";
 import Button from "../ui/Button";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { clearCart, getCart, getTotalCartPrice } from "../cart/cartSlice";
-import { getUsername } from "../user/userSlice";
+import { fetchAddress, getUsername } from "../user/userSlice";
 import store from "../../store";
 import { formatCurrency } from "../utils/helpers";
+import { useState } from "react";
 
 // https://uibakery.io/regex-library/phone-number
 const isValidPhone = (str) =>
@@ -14,17 +15,18 @@ const isValidPhone = (str) =>
   );
 
 function CreateOrder() {
-  // const [withPriority, setWithPriority] = useState(false);
+  const [withPriority, setWithPriority] = useState(false);
   const cart = useSelector(getCart);
   const navigate = useNavigation();
   const isSubmitiong = navigate.state === "submitting";
   const formError = useActionData();
   const name = useSelector(getUsername);
+  const dispatch = useDispatch();
 
   const cartPrice = useSelector(getTotalCartPrice);
   const priorityPrice = cartPrice * 0.2;
 
-  const totalPrice = cartPrice + priorityPrice;
+  const totalPrice = withPriority ? cartPrice + priorityPrice : cartPrice;
 
   return (
     <div className="px-4 py-6">
@@ -70,8 +72,8 @@ function CreateOrder() {
             type="checkbox"
             name="priority"
             id="priority"
-            // value={withPriority}
-            // onChange={(e) => setWithPriority(e.target.checked)}
+            value={withPriority}
+            onChange={(e) => setWithPriority(e.target.checked)}
           />
           <label htmlFor="priority" className="font-medium">
             Want to yo give your order priority?
@@ -84,6 +86,9 @@ function CreateOrder() {
               ? "Placing order..."
               : `Order now for ${formatCurrency(totalPrice)}`}
           </Button>
+          <button onClick={() => dispatch(fetchAddress())}>
+            Get Possition
+          </button>
         </div>
       </Form>
     </div>
@@ -95,7 +100,7 @@ export async function action({ request }) {
   const order = {
     ...data,
     cart: JSON.parse(data.cart),
-    priority: data.priority === "on",
+    priority: data.priority === "true",
   };
   const errors = {};
   if (!isValidPhone(order.phone)) {
