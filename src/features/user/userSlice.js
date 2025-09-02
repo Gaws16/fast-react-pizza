@@ -14,8 +14,15 @@ export const fetchAddress = createAsyncThunk("user/fetchAddress", async () => {
     position.coords.longitude,
   );
 
+  const serializedPosition = {
+    latitude: position.coords.latitude,
+    longitude: position.coords.longitude,
+    accuracy: position.coords.accuracy,
+    timestamp: position.timestamp,
+  };
+
   const addressString = `${address?.city}, ${address?.street}`;
-  return { position, address: addressString };
+  return { position: serializedPosition, address: addressString };
 });
 const initialState = {
   username: "",
@@ -35,12 +42,13 @@ const userSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchAddress.pending, (state, action) => {
+      .addCase(fetchAddress.pending, (state) => {
         state.status = "loading";
       })
       .addCase(fetchAddress.fulfilled, (state, action) => {
+        const { latitude, longitude } = action.payload.position;
         state.status = "idle";
-        state.position = action.payload.position;
+        state.position = { latitude, longitude };
         state.address = action.payload.address;
       })
       .addCase(fetchAddress.rejected, (state, action) => {

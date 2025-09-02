@@ -20,7 +20,10 @@ function CreateOrder() {
   const navigate = useNavigation();
   const isSubmitiong = navigate.state === "submitting";
   const formError = useActionData();
-  const name = useSelector(getUsername);
+  const { username, address, status, position, error } = useSelector(
+    (state) => state.user,
+  );
+  console.log(address, position);
   const dispatch = useDispatch();
 
   const cartPrice = useSelector(getTotalCartPrice);
@@ -39,7 +42,7 @@ function CreateOrder() {
             <input
               type="text"
               name="customer"
-              defaultValue={name}
+              defaultValue={username}
               required
               className="input"
             />
@@ -60,8 +63,18 @@ function CreateOrder() {
 
         <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
           <label className="sm:basis-40">Address</label>
-          <div className="grow">
+          <div className="flex grow gap-3">
             <input type="text" name="address" required className="input" />
+
+            <Button
+              type="small"
+              onClick={(e) => {
+                e.preventDefault();
+                dispatch(fetchAddress());
+              }}
+            >
+              Get Possition
+            </Button>
           </div>
         </div>
 
@@ -86,9 +99,6 @@ function CreateOrder() {
               ? "Placing order..."
               : `Order now for ${formatCurrency(totalPrice)}`}
           </Button>
-          <button onClick={() => dispatch(fetchAddress())}>
-            Get Possition
-          </button>
         </div>
       </Form>
     </div>
