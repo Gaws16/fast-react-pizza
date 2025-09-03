@@ -21,7 +21,7 @@ export const fetchAddress = createAsyncThunk("user/fetchAddress", async () => {
     timestamp: position.timestamp,
   };
 
-  const addressString = `${address?.city}, ${address?.street}`;
+  const addressString = `${address?.countryName}, ${address?.city} `;
   return { position: serializedPosition, address: addressString };
 });
 const initialState = {

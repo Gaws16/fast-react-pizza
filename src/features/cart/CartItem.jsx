@@ -3,7 +3,7 @@ import DeleteItem from "./DeleteItem";
 import UpdateItemQuantity from "./UpdateItemQuantity";
 
 function CartItem({ item }) {
-  const { id: pizzaId, name, quantity, totalPrice } = item;
+  const { pizzaId, name, quantity, totalPrice } = item;
 
   return (
     <li className="py-3 font-semibold sm:flex sm:items-center sm:justify-between">
