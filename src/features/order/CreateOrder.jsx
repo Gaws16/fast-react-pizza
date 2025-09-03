@@ -23,7 +23,6 @@ function CreateOrder() {
   const { username, address, status, position, error } = useSelector(
     (state) => state.user,
   );
-  console.log(address, position);
   const dispatch = useDispatch();
 
   const cartPrice = useSelector(getTotalCartPrice);
@@ -64,7 +63,18 @@ function CreateOrder() {
         <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
           <label className="sm:basis-40">Address</label>
           <div className="flex grow gap-3">
-            <input type="text" name="address" required className="input" />
+            <input
+              type="text"
+              name="address"
+              defaultValue={address}
+              required
+              className="input"
+            />
+            <input
+              type="hidden"
+              name="position"
+              value={JSON.stringify(position)}
+            />
 
             <Button
               type="small"
@@ -76,6 +86,12 @@ function CreateOrder() {
               Get Possition
             </Button>
           </div>
+          {status === "error" && (
+            <p className="mt-2 rounded-md bg-red-100 p-2 text-xs text-red-700 sm:text-sm">
+              Something went wrong with getting address, please make sure to
+              fill this out!
+            </p>
+          )}
         </div>
 
         <div className="mb-12 flex items-center gap-5">
@@ -94,7 +110,10 @@ function CreateOrder() {
         </div>
 
         <div className="text-sm font-semibold">
-          <Button type="primary" disabled={isSubmitiong}>
+          <Button
+            type="primary"
+            disabled={isSubmitiong || status === "loading"}
+          >
             {isSubmitiong
               ? "Placing order..."
               : `Order now for ${formatCurrency(totalPrice)}`}
