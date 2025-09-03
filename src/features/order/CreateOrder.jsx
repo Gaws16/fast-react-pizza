@@ -76,15 +76,17 @@ function CreateOrder() {
               value={JSON.stringify(position)}
             />
 
-            <Button
-              type="small"
-              onClick={(e) => {
-                e.preventDefault();
-                dispatch(fetchAddress());
-              }}
-            >
-              Get Possition
-            </Button>
+            {!address && (
+              <Button
+                type="small"
+                onClick={(e) => {
+                  e.preventDefault();
+                  dispatch(fetchAddress());
+                }}
+              >
+                Get Possition
+              </Button>
+            )}
           </div>
           {status === "error" && (
             <p className="mt-2 rounded-md bg-red-100 p-2 text-xs text-red-700 sm:text-sm">
