@@ -4,6 +4,7 @@ import userReducer from "./features/user/userSlice";
 import cartReducer from "./features/cart/cartSlice";
 import persistReducer from "redux-persist/es/persistReducer";
 import persistStore from "redux-persist/es/persistStore";
+import storage from "redux-persist/lib/storage";
 
 const rootReducer = combineReducers({
   user: userReducer,
@@ -12,11 +13,11 @@ const rootReducer = combineReducers({
 
 const persistConfig = {
   key: "root",
-  storage: localStorage,
+  storage: storage,
 };
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-const store = configureStore({
+export const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

@@ -4,7 +4,7 @@ import Button from "../ui/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { clearCart, getCart, getTotalCartPrice } from "../cart/cartSlice";
 import { fetchAddress, getUsername } from "../user/userSlice";
-import store from "../../store";
+import { store } from "../../store";
 import { formatCurrency } from "../utils/helpers";
 import { useState } from "react";
 
